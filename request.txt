@@ -1,0 +1,26 @@
+Department POST
+{
+    "name":"dentistry"
+}
+
+
+Post Doctor
+{
+    "name": "Dr Rogers",
+    "email": "Rogers@mail.ru",
+    "dob": "1995-01-01"
+}
+
+
+Setting a doctor with id = 2  to a department with id=1
+http://localhost:8080/doctors/2/department/1
+
+Post Facility
+
+{
+    "description":"Medical check-ups",
+    "price": "199.0"
+}
+
+
+
