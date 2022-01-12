@@ -3,9 +3,13 @@ package com.baggio.innohospital.service;
 import com.baggio.innohospital.data.Department;
 import com.baggio.innohospital.dto.DepartmentDto;
 import com.baggio.innohospital.converter.DepartmentMapper;
+import com.baggio.innohospital.exception.DepartmentNotFoundException;
 import com.baggio.innohospital.repository.DepartmentRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -33,7 +37,7 @@ public class DepartmentServiceImpl implements DepartmentService{
     @Override
     public DepartmentDto findById(Integer id) {
         return mapper.toDepartmentDto(repository.findById(id).orElseThrow(()
-                -> new EntityNotFoundException("Entity not found")));
+                -> new DepartmentNotFoundException("Department not found by id:" + id)));
     }
 
     @Override

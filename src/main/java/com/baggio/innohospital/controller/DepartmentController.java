@@ -2,9 +2,12 @@ package com.baggio.innohospital.controller;
 
 import com.baggio.innohospital.dto.DepartmentDto;
 import com.baggio.innohospital.dto.DoctorDto;
+import com.baggio.innohospital.exception.DepartmentNotFoundException;
 import com.baggio.innohospital.service.DepartmentService;
 import com.baggio.innohospital.service.DoctorService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,6 +48,11 @@ public class DepartmentController {
     @GetMapping("/{id}/doctors")
     public List<DoctorDto> getDepartmentDoctors(@PathVariable("id") Integer id){
         return doctorService.findAllDoctorsByDepartment(id);
+    }
+
+    @ExceptionHandler(value = DepartmentNotFoundException.class)
+    public ResponseEntity handleDepartNotFoundException(DepartmentNotFoundException departmentNotFoundException) {
+        return new ResponseEntity(departmentNotFoundException.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 }
