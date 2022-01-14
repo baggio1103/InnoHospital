@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 @Getter
@@ -24,5 +25,7 @@ public class Appointment extends BaseEntity {
 
     @Column(columnDefinition = "TIMESTAMP WITH TIME ZONE")
     private ZonedDateTime timeZone;
+
+    private LocalDateTime localDateTime;
 
 }

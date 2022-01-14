@@ -22,7 +22,7 @@ public class AppointmentMapper {
         appointment.setPatientId(appointmentDto.getPatientId());
         appointment.setAppointmentDate(ZonedDateTime.parse(appointmentDto.getAppointmentDate(), DateTimeFormatter.ofPattern(TimeFormat.DATE_TIME_ISO_EXTENDED_WITH_OFFSET_FORMAT)));
         appointment.setTimeZone(ZonedDateTime.parse(appointmentDto.getTimeZone(), DateTimeFormatter.ofPattern(TimeFormat.DATE_TIME_ISO_EXTENDED_WITH_OFFSET_FORMAT)));
-
+        appointment.setLocalDateTime(appointmentDto.getLocalDateTime());
         return appointment;
     }
 
@@ -37,7 +37,7 @@ public class AppointmentMapper {
         appointmentDto.setPatientId(appointment.getPatientId());
         appointmentDto.setAppointmentDate(appointment.getAppointmentDate().toString());
         appointmentDto.setTimeZone(appointment.getTimeZone().toString());
-
+        appointmentDto.setLocalDateTime(appointment.getLocalDateTime());
         return appointmentDto;
     }
 

@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,5 +22,7 @@ public class AppointmentDto extends BaseEntityDto{
 
     @JsonFormat(pattern = TimeFormat.DATE_TIME_ISO_EXTENDED_WITH_OFFSET_FORMAT)
     private String timeZone;
+
+    private LocalDateTime localDateTime;
 
 }
