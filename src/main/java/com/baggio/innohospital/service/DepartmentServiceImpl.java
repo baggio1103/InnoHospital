@@ -6,11 +6,14 @@ import com.baggio.innohospital.dto.DepartmentDto;
 import com.baggio.innohospital.exception.domain.DepartmentNotFoundException;
 import com.baggio.innohospital.repository.DepartmentRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class DepartmentServiceImpl implements DepartmentService{
@@ -27,7 +30,14 @@ public class DepartmentServiceImpl implements DepartmentService{
 
     @Override
     public List<DepartmentDto> findAll() {
-        return repository.findAll().stream().map(mapper::toDepartmentDto).collect(Collectors.toList());
+        List<Department> departments = repository.findAll();
+        long start = System.currentTimeMillis();
+        if (!CollectionUtils.isEmpty(departments)) {
+            System.out.println("Not empty");
+        }
+        long end = System.currentTimeMillis();
+        log.info("Exec time:{}", (end - start));
+        return departments.stream().map(mapper::toDepartmentDto).collect(Collectors.toList());
     }
 
     @Override

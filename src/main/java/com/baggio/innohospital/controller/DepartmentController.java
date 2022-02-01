@@ -2,28 +2,18 @@ package com.baggio.innohospital.controller;
 
 import com.baggio.innohospital.dto.DepartmentDto;
 import com.baggio.innohospital.dto.DoctorDto;
-import com.baggio.innohospital.exception.domain.DepartmentNotFoundException;
+import com.baggio.innohospital.exception.ExceptionHandling;
 import com.baggio.innohospital.service.DepartmentService;
 import com.baggio.innohospital.service.DoctorService;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
-
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 @RestController
 @RequestMapping("/departments")
 @AllArgsConstructor
-public class DepartmentController {
+public class DepartmentController extends ExceptionHandling {
 
     private final DepartmentService departmentService;
     private final DoctorService doctorService;
