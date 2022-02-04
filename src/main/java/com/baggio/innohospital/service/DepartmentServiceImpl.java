@@ -30,14 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 
     @Override
     public List<DepartmentDto> findAll() {
-        List<Department> departments = repository.findAll();
-        long start = System.currentTimeMillis();
-        if (!CollectionUtils.isEmpty(departments)) {
-            System.out.println("Not empty");
-        }
-        long end = System.currentTimeMillis();
-        log.info("Exec time:{}", (end - start));
-        return departments.stream().map(mapper::toDepartmentDto).collect(Collectors.toList());
+        return repository.findAll().stream().map(mapper::toDepartmentDto).collect(Collectors.toList());
     }
 
     @Override
